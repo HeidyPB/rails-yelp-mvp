@@ -1,22 +1,13 @@
-<%= render @restaurant %>
-
-<p><strong>Reviews</strong></p>
-<p><%= link_to 'Ajoutez votre avis', new_restaurant_review_path(@restaurant) %></p>
-<ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
-    <li><%= link_to 'Supprimer',
-            review_path(review),
-            data: {
-              turbo_method: :delete,
-              turbo_confirm: 'Êtes-vous certain(e) ?'
-            } %></li>
-  <% end %>
-</ul>
-<br>
-
-<div>
-  <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
-  <%= link_to "Back to restaurants", restaurants_path %>
-  <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
-</div>
+<h1>Restaurant</h1>
+<p>Name: <%= @restaurant.name %></p>
+<p>Address: <%= @restaurant.address %></p>
+<p>Phone Number: <%= @restaurant.phone_number %></p>
+<p>Category: <%= @restaurant.category %> </p>
+<p>
+Reviews:
+<% @restaurant.reviews.each do |review| %>
+<p><%= review.content %></p>
+<%end%>
+</p>
+<p> <%= link_to 'Give your opinion', new_restaurant_review_path(@restaurant) %> </p>
+<%= link_to 'Back', restaurants_path %>
